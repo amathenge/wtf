@@ -3,12 +3,13 @@ from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 import os
+import cred
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 # for WTF the following keys have different names.
-app.config['RECAPTCHA_PUBLIC_KEY'] = 'the-recaptcha-public-site-key'
-app.config['RECAPTCHA_PRIVATE_KEY'] = 'the-recaptcha-private-secret-key'
+app.config['RECAPTCHA_PUBLIC_KEY'] = cred.recaptcha_site_key
+app.config['RECAPTCHA_PRIVATE_KEY'] = cred.recaptcha_secret_key
 app.config['TESTING'] = False
 
 class LoginForm(FlaskForm):
